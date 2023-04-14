@@ -64,6 +64,11 @@ jobs:
             aws-region: AWS_DEFAULT_REGION
       - checkout
       - run:
+          name: Setup App
+          command: |
+            cd udagram/udagram-api
+            eb setenv PORT=8080 PORT_DB=5432 POSTGRES_HOST=$POSTGRES_HOST POSTGRES_USERNAME=$POSTGRES_USERNAME POTSTGRES_PASSWORD=$POTSTGRES_PASSWORD POSTGRES_DB=$POSTGRES_DB URL=$URL JWT_SECRET=$JWT_SECRET AWS_PROFILE=$AWS_PROFILE AWS_BUCKET=$AWS_BUCKET AWS_REGION=$AWS_REGION
+      - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
           command: |
